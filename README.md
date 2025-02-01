@@ -1,1 +1,3 @@
-# hardware-web-scraper
+```
+pip install requests beautifulsoup4
+```
