@@ -3,10 +3,11 @@ import requests, re, sys
 
 
 class Website:
-    def __init__(self, url: str):
-        if not self.is_valid_url(url):
-            sys.exit("INVALID URL")
-        self.url = url
+    def __init__(self, url: str = None):
+        if url:
+            if not self.is_valid_url(url):
+                sys.exit("INVALID URL")
+            self.url = url
 
     def is_valid_url(self, url: str) -> bool:
         # `VALID_URL_RE` defined in child class
