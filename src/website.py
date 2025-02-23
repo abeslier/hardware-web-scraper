@@ -9,5 +9,5 @@ class Website:
         return is_valid(url, pattern)
 
     def get_soup(self, url: str) -> BeautifulSoup:
-        response = requests.get(url)
+        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"})
         return BeautifulSoup(response.text, "html.parser")

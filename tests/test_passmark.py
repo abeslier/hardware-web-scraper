@@ -24,5 +24,5 @@ def test_get_gpu_score():
     ]
     passmark = PassMark()
     for gpu_name, expected_score in test_cases:
-        score = passmark.get_gpu_score()
+        score = passmark.get_gpu_score(gpu_name)
         assert score == expected_score
