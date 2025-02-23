@@ -1,3 +1,7 @@
 ```
-pip install requests beautifulsoup4
+pip install requests beautifulsoup4 pytest
+```
+
+```
+pytest
 ```

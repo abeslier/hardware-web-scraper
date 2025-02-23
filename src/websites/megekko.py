@@ -1,4 +1,4 @@
-import re
+import re, sys
 
 from website import Website
 
@@ -12,12 +12,12 @@ class Megekko(Website):
     }
 
     def __init__(self, url: str):
-        super().__init__(url)
-        self.url = self.url.replace("_d-block_cf-", "_d-list_cf-")  # list view if not already (to show product info summary) 
-        self.total_pages = self.get_total_pages()
+        if not self.is_valid_url(url, self.VALID_URL_RE):
+            sys.exit("INVALID URL")
+        self.url = url.replace("_d-block_cf-", "_d-list_cf-")  # list view if not already (to show product info summary) 
 
+        self.total_pages = self.get_total_pages()
         self.product_category_function = self.get_product_category_function()
-        
         self.extracted_products_divs = self.extract_products_divs()
         self.extracted_products_data = self.extract_products_data(self.extracted_products_divs, self.wanted_data)
 

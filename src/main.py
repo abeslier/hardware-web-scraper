@@ -1,5 +1,5 @@
-from megekko import Megekko
-from passmark import PassMark
+from websites.megekko import Megekko
+from websites.passmark import PassMark
 from utils import *
 
 

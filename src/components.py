@@ -1,4 +1,4 @@
-from megekko import Megekko
+from websites.megekko import Megekko
 
 
 class Component():
