@@ -4,9 +4,7 @@ from utils import *
 
 
 def main():
-    url = input("URL: ")
-    
-    megekko = Megekko(url)
+    megekko = Megekko(input("URL: "))
     print_csv(export_csv(megekko.extracted_products_data))
 
     passmark = PassMark()
