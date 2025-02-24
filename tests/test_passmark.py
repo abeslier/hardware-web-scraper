@@ -14,11 +14,14 @@ def test_get_cpu_scores():
         assert scores["multithread"] == expected_scores["multithread"]
 
 def test_get_gpu_score():
+    # score n on gpu page but n-1 in list for most gpus, for some reason
+    # the following scores are the ones found on the pages
+    # (where the implementation looks)
     test_cases = [
-        ("Quadro K600", 728),
-        ("GeForce GT 1030", 2450),
+        ("Quadro K600", 729),
+        ("GeForce GT 1030", 2451),
         ("GeForce RTX 3060 12GB", 16896),
-        ("GeForce RTX 3060 Ti", 20418),
+        ("GeForce RTX 3060 Ti", 20419),
         ("GeForce RTX 4070", 26969),
         ("Radeon RX 6600", 15125),
     ]
