@@ -14,9 +14,6 @@ def test_get_cpu_scores():
         assert abs(scores["multithread"] - expected_scores["multithread"]) <= expected_scores["multithread"] * 0.01
 
 def test_get_gpu_score():
-    # score n on gpu page but n-1 in list for most gpus, for some reason
-    # the following scores are the ones found on the pages
-    # (where the implementation looks)
     test_cases = [
         ("Quadro K600", 729),
         ("GeForce GT 1030", 2451),
