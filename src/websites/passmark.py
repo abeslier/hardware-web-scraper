@@ -9,7 +9,7 @@ class PassMark(Website):
     CPU_PAGE_URL_BASE = "https://www.cpubenchmark.net/cpu.php?cpu="
     GPU_PAGE_URL_BASE = "https://www.videocardbenchmark.net/gpu.php?gpu="
 
-    def find_href_id(self, pu_list_url: str, separator: str, pu_name: str) -> str:
+    def find_pu_href_id(self, pu_list_url: str, pu_type: str, pu_name: str) -> str:
         """
         e.g.
         1. with `Radeon RX 6600`
@@ -21,11 +21,11 @@ class PassMark(Website):
         a = soup.find_all("a", string=pu_name)
         if len(a) == 1:  # else: not found, or multiple matches found
             pu_lookup_list_url_end = a[0].get("href")
-            pu_href_id = pu_lookup_list_url_end.split(separator)[-1]
+            pu_href_id = pu_lookup_list_url_end.split(f"?{pu_type}=")[-1]
             return pu_href_id
 
     def get_cpu_scores(self, cpu_name: str) -> dict[str, int]:
-        cpu_href_id = self.find_href_id(self.CPU_LIST_URL, "?cpu=", cpu_name)
+        cpu_href_id = self.find_pu_href_id(self.CPU_LIST_URL, "cpu", cpu_name)
         cpu_page_url = self.CPU_PAGE_URL_BASE + cpu_href_id
 
         soup = self.get_soup(cpu_page_url)
@@ -39,7 +39,7 @@ class PassMark(Website):
         return {"singlethread": singlethread_score, "multithread": multithread_score}
 
     def get_gpu_score(self, gpu_name: str) -> int:
-        gpu_href_id = self.find_href_id(self.GPU_LIST_URL, "?gpu=", gpu_name)
+        gpu_href_id = self.find_pu_href_id(self.GPU_LIST_URL, "gpu", gpu_name)
         gpu_page_url = self.GPU_PAGE_URL_BASE + gpu_href_id
 
         soup = self.get_soup(gpu_page_url)

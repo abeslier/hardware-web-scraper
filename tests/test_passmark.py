@@ -14,7 +14,7 @@ def test_get_cpu_scores():
         assert abs(scores["multithread"] - expected_scores["multithread"]) <= expected_scores["multithread"] * 0.01
 
 def test_get_gpu_score():
-    test_cases = [
+    test_cases = [  # 2025-02-24 scores
         ("Quadro K600", 729),
         ("GeForce GT 1030", 2451),
         ("GeForce RTX 3060 12GB", 16896),
